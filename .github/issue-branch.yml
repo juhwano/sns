@@ -1,0 +1,21 @@
+branchName: '${issue.number}'
+branches:
+  - label: 'feat'
+    prefix: feat/
+  - label: 'fix'
+    prefix: fix/
+  - label: 'test'
+    prefix: test/
+  - label: 'perf'
+    prefix: perf/
+  - label: 'refactor'
+    prefix: refactor/
+  - label: 'revert'
+    prefix: revert/
+  - label: 'docs'
+    prefix: docs/
+  - label: 'style'
+    prefix: style/
+  - label: 'ci'
+    prefix: ci/
+autoCloseIssue: true
