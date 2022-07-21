@@ -25,11 +25,11 @@ module.exports = class User extends Sequelize.Model {
       },
       {
         sequelize,
-        timestamps: true, //createdAt, updatedAt 컬럼 자동 추가
+        timestamps: true, // createAt, updateAt 자동 생성
         underscored: true, //컬럼명 스네이크 형식으로 변경
         modelName: 'USER',
         tableName: 'USER',
-        paranoid: true,
+        paranoid: true, // deleteAt을 생성 (삭제한 날짜)
         charset: 'utf8mb4', //이모지 가능
         collate: 'utf8mb4_general_ci', //한글 저장
         freezeTableName: true, //테이블명 이름 그대로 사용

@@ -3,6 +3,11 @@
 
 
 ### Node ###
+# macOS template
+*.DS.Store
+.AppleDouble
+.LSOverride
+
 # Logs
 logs
 *.log

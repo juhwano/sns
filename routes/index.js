@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const indexController = require('./../controllers/index');
 
-router.get('/', indexController.test);
+const userRouter = require('./user');
+const postRouter = require('./post');
+
+//유저
+router.use('/users', userRouter);
+//게시글
+router.use('/posts', postRouter);
 
 module.exports = router;
