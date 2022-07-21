@@ -15,7 +15,6 @@ const app = express();
 // passportConfig(); // 패스포트 설정
 
 app.set('port', process.env.PORT || 3000);
-app.set('view engine', 'html');
 
 sequelize
   .sync({ force: false })
@@ -34,7 +33,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-app.use('/', indexRouter);
+app.use('/api', indexRouter);
 
 app.use((req, res, next) => {
   const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
