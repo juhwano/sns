@@ -6,15 +6,21 @@ const userController = {
   },
   register: async (req, res) => {
     try {
-      let result = await userService.register(req.body);
+      const result = await userService.register(req.body);
 
       return res.send(result);
     } catch (error) {
       console.error(error);
     }
   },
-  login: (req, res) => {
-    res.json('login');
+  login: async (req, res) => {
+    try {
+      const result = await userService.login(req);
+
+      return res.send(result);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 
