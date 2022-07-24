@@ -41,18 +41,8 @@ module.exports = class User extends Sequelize.Model {
       foreignKey: 'user_id',
     });
     db.User.belongsToMany(db.Post, {
-      foreignKey: 'user_id',
       through: 'UserPostLike',
-    });
-    db.User.belongsToMany(db.User, {
-      foreignKey: 'followingId',
-      as: 'Followers', //fk와 반대되는 모델을 가르킴(팔로워를 찾으려면 팔로잉하는 아이디를 찾음)
-      through: 'Follow', //생성 모델 이름
-    });
-    db.User.belongsToMany(db.User, {
-      foreignKey: 'followerId',
-      as: 'Followings',
-      through: 'Follow',
+      foreignKey: 'user_id',
     });
   }
 };

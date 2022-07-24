@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../../controllers/user');
+const userController = require('../../controllers/users');
 const authModule = require('../../modules/auth');
-
-router.get('/', userController.test);
-
 //[토큰 필요 X]
 //회원 가입
 router.post('/register', userController.register);

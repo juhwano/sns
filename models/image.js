@@ -6,11 +6,15 @@ module.exports = class Image extends Sequelize.Model {
       {
         name: {
           type: Sequelize.STRING(45),
-          allowNull: true,
+          allowNull: false,
         },
-        url: {
+        path: {
           type: Sequelize.TEXT,
-          allowNull: true,
+          allowNull: false,
+        },
+        size: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
         },
       },
       {

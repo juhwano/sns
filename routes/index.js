@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const userRouter = require('./user');
-const postRouter = require('./post');
+const userRouter = require('./users');
+const postRouter = require('./posts');
 
 //유저
 router.use('/users', userRouter);

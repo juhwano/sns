@@ -4,7 +4,7 @@ module.exports = class Post extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        content: {
+        title: {
           type: Sequelize.STRING(45),
           allowNull: false,
         },
@@ -46,12 +46,12 @@ module.exports = class Post extends Sequelize.Model {
       allowNull: false,
     });
     db.Post.belongsToMany(db.Hashtag, {
-      foreignKey: 'post_id',
       through: 'PostHashtag',
+      foreignKey: 'post_id',
     });
     db.Post.belongsToMany(db.User, {
-      foreignKey: 'post_id',
       through: 'UserPostLike',
+      foreignKey: 'post_id',
     });
   }
 };

@@ -1,9 +1,6 @@
-const userService = require('../../services/user');
+const userService = require('../../services/users');
 
 const userController = {
-  test: (req, res) => {
-    res.json('user');
-  },
   register: async (req, res) => {
     try {
       const result = await userService.register(req.body);
