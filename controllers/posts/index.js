@@ -16,13 +16,21 @@ const postController = {
   uploadImage: async (req, res) => {
     try {
       const result = await postService.uploadImage(req);
-      console.log('result: ', result);
 
       return res.send(result);
     } catch (error) {
       console.error(error);
     }
     // 업로드하고 난 후 결과물
+  },
+  updatePost: async (req, res) => {
+    try {
+      const result = await postService.updatePost(req);
+
+      return res.send(result);
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 
