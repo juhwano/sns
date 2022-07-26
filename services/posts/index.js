@@ -69,41 +69,80 @@ const postService = {
   updatePost: async (data) => {
     const { post_id } = data.params;
     const { title, content } = data.body;
-    console.log(title, content);
-    console.log('post_id: ', post_id);
-    //
+    const { id } = data.userInfo.dataValues;
+
+    const isExistWriter = await postModel.findOne({
+      where: { id: post_id, user_id: id },
+    });
+
     try {
-      if (title === undefined) {
-        const newContent = contentModel.update(
-          {
-            content,
-          },
-          { where: { post_id } },
-        );
-      } else if (content === undefined) {
-        const newTitle = postModel.update(
-          {
-            title,
-          },
-          { where: { id: post_id } },
-        );
+      if (isExistWriter) {
+        if (title === undefined) {
+          await contentModel.update(
+            {
+              content,
+            },
+            { where: { post_id } },
+          );
+        } else if (content === undefined) {
+          await postModel.update(
+            {
+              title,
+            },
+            { where: { id: post_id } },
+          );
+        } else {
+          await postModel.update(
+            {
+              title,
+            },
+            { where: { id: post_id } },
+          );
+
+          await contentModel.update(
+            {
+              content,
+            },
+            { where: { post_id } },
+          );
+        }
+        return setResponse(code.OK, '게시글 수정 성공');
       } else {
-        const newTitle = postModel.update(
-          {
-            title,
-          },
-          { where: { id: post_id } },
-        );
-
-        const newContent = contentModel.update(
-          {
-            content,
-          },
-          { where: { post_id } },
-        );
+        return setResponse(code.BAD_REQUEST, '게시글 수정 실패(작성자 다름)');
       }
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  deletePost: async (data) => {
+    const { post_id } = data.params;
 
-      return setResponse(code.OK, '게시글 수정 성공');
+    try {
+      await postModel.destroy({
+        where: { id: post_id },
+      });
+      await contentModel.destroy({
+        where: { post_id },
+      });
+
+      return setResponse(code.OK, '게시글 삭제 성공');
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  recoverPost: async (data) => {
+    const { post_id } = data.params;
+
+    try {
+      await postModel.restore({
+        where: { id: post_id },
+      });
+
+      await contentModel.restore({
+        where: { post_id },
+      });
+
+      return setResponse(code.OK, '게시글 복구 성공');
     } catch (error) {
       console.error(error);
     }

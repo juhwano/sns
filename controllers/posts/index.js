@@ -32,6 +32,24 @@ const postController = {
       console.error(error);
     }
   },
+  deletePost: async (req, res) => {
+    try {
+      const result = await postService.deletePost(req);
+
+      return res.send(result);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  recoverPost: async (req, res) => {
+    try {
+      const result = await postService.recoverPost(req);
+
+      return res.send(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 };
 
 module.exports = postController;

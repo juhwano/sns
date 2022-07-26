@@ -16,6 +16,14 @@ router.post(
 );
 //게시글 수정
 router.patch('/:post_id', authModule.loggedIn, postController.updatePost);
+//게시글 삭제
+router.delete('/:post_id', authModule.loggedIn, postController.deletePost);
+//게시글 복구
+router.patch(
+  '/:post_id/recover',
+  authModule.loggedIn,
+  postController.recoverPost,
+);
 //Filtering (= 필터링)
 //해시태그 검색(태그 눌러서 이동)
 
